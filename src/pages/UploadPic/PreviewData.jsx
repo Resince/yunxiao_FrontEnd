@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useStore } from "../../store";
-import { Carousel, Table, Image } from 'antd';
+import { Carousel, Table, Image, Button } from 'antd';
 import getBase64 from "@/utils/getBase64";
 
 const contentStyle = {
@@ -41,6 +41,10 @@ const PreviewData = () => {
         console.log(imgUrlList);
     };
 
+    const handleComClick = () => {
+        console.log("组合")
+    };
+
     const columns = [
         {
             title: '名称',
@@ -57,7 +61,6 @@ const PreviewData = () => {
     return (
         <div className="preview_box" >
             <Carousel afterChange={onChange}>
-                
                 {imgUrlList.map((value, index) => (
                     <div key={index}>
                         <div style={contentStyle}>
@@ -73,6 +76,15 @@ const PreviewData = () => {
                     dataSource={data}
                     pagination={false}
                 />
+            </div>
+
+            <div className="text-center mt-10 h-20">
+                <Button
+                    type="primary"
+                    size="large"
+                    className="bg-black mb-28 "
+                    onClick={handleComClick}
+                >确定组合</Button>
             </div>
         </div>
     );
