@@ -4,9 +4,9 @@ const { Header } = Layout;
 
 const CusHeader = () => {
     return (
-        <Header className="top-0  w-full flex items-center h-16 justify-between bg-slate-100  shadow-lg">
+        <Header className="top-0  w-full flex items-center h-16 justify-between bg-slate-100  shadow-xl">
             <Image
-                width={80}
+                width={70}
                 preview={false}
                 src="src\assets\logo.png"
                 className="rounded-2xl shadow-2xl"
