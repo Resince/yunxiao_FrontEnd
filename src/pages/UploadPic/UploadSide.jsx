@@ -1,32 +1,24 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { Button, Upload, Modal } from "antd";
 import { useStore } from "../../store";
 import PreviewData from "./PreviewData";
-import http from "../../utils/axios";
+import { uploadImg } from "../../service/uploadImages";
 
-        
 const bodyStyle = {
-    height: '450px',
-    overflow: 'hidden',
-    overflowY: 'scroll',
-}        
-        
+    height: "450px",
+    overflow: "hidden",
+    overflowY: "scroll",
+};
+
 const UploadSide = () => {
-    const store = useStore();
     const [viewFlag, setViewFlag] = useState(false);
+    const store = useStore();
 
     const handleOnClick = () => {
-        const formdata = new FormData();
-        store.UploadImgStore.getImgList.map((item) => {
-            formdata.append("image", item);
-        });
-        http.post("/dev/nvoice/reg", formdata).then((ans) => {
-            console.log(ans);
-        });
-        http.post("/dev/nvoice/reg", formdata).then((ans) => {
-            console.log(ans);
-        });
         setViewFlag(true);
+        uploadImg(store.UploadImgStore.getImgList.at(0)).then((res) => {
+            console.log(res);
+        });
     };
 
     return (
@@ -46,7 +38,7 @@ const UploadSide = () => {
                 footer={null}
                 bodyStyle={bodyStyle}
             >
-                <PreviewData/>
+                <PreviewData />
             </Modal>
         </div>
     );
