@@ -2,9 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useStore } from "../../store";
 import { observer } from "mobx-react-lite";
-import { Image, Button, Badge } from "antd";
+import { Image } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
-import "./swiperCard.scss";
 
 import "swiper/css";
 import "swiper/css/free-mode";
@@ -78,7 +77,7 @@ function SwiperCard() {
             >
                 {slide.map((value, index) => {
                     return (
-                        <SwiperSlide key={index} onFocus={handleFocus}>
+                        <SwiperSlide key={index}>
                             <div className="group/item">
                                 <button
                                     onClick={() => handleClick(value)}

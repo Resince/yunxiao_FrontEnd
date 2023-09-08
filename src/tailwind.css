@@ -1,3 +1,10 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+
+.swiper-slide-visible div img {
+    filter: contrast(50%);
+}
+.swiper-slide-visible.swiper-slide-thumb-active div img {
+    filter: contrast(100%);
+}

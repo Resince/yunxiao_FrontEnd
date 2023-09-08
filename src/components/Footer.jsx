@@ -1,17 +1,13 @@
 import React from "react";
-import { Layout } from "antd";
-
-const { Footer } = Layout;
-
 const CusFooter = () => {
-    return(
-        <Footer
+    return (
+        <div
             style={{
                 textAlign: "center",
             }}
         >
             云销
-        </Footer>
+        </div>
     );
 };
 
