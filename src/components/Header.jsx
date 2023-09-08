@@ -1,10 +1,9 @@
 import React from "react";
-import { Layout, Space, Button, Image } from "antd";
-const { Header } = Layout;
+import { Space, Button, Image } from "antd";
 
 const CusHeader = () => {
     return (
-        <Header className="top-0  w-full flex items-center h-16 justify-between bg-slate-100  shadow-xl">
+        <div className="top-0  w-full flex items-center h-16 justify-between bg-slate-100  shadow-xl">
             <Image
                 width={70}
                 preview={false}
@@ -19,7 +18,7 @@ const CusHeader = () => {
                     注册
                 </Button>
             </Space>
-        </Header>
+        </div>
     );
 };
 

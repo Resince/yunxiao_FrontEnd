@@ -1,7 +1,6 @@
 import http from "../utils/axios";
 
 export function uploadImgList(imgList) {
-
     const formdata = new FormData();
     imgList.map(item => {
         formdata.append("file", item);

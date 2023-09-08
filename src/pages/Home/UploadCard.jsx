@@ -16,7 +16,7 @@ const UploadCard = () => {
     const handleChange = (info) => {
         if (info.file.status !== "uploading") {
             store.UploadImgStore.initImg(info.fileList);
-            navigate("/uploadPic");
+            navigate("/upload");
         }
     };
 
