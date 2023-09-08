@@ -1,31 +1,19 @@
-<<<<<<< HEAD
 import React, {useState} from "react";
 import { Button, Upload, Modal } from "antd";
+import { useStore } from "../../store";
 import PreviewData from "./PreviewData";
+import http from "../../utils/axios";
 
-
+        
 const bodyStyle = {
     height: '450px',
     overflow: 'hidden',
     overflowY: 'scroll',
-}
-
-const UploadSide = () => {
-
-    const [viewFlag, setViewFlag] = useState(false);
-
-    const handleOnClick = () => {
-        // todo
-        // 提交
-        setViewFlag(true);
-=======
-import React from "react";
-import { Button } from "antd";
-import { useStore } from "../../store";
-import http from "../../utils/axios";
-
+}        
+        
 const UploadSide = () => {
     const store = useStore();
+    const [viewFlag, setViewFlag] = useState(false);
 
     const handleOnClick = () => {
         const formdata = new FormData();
@@ -38,7 +26,7 @@ const UploadSide = () => {
         http.post("/dev/nvoice/reg", formdata).then((ans) => {
             console.log(ans);
         });
->>>>>>> upstream/main
+        setViewFlag(true);
     };
 
     return (
