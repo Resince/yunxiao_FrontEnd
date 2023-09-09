@@ -1,19 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { useStore } from "../../store";
-import { Carousel, Table, Image, Button } from 'antd';
+import { Carousel, Table, Image, Button } from "antd";
 import getBase64 from "@/utils/getBase64";
 
 const contentStyle = {
     margin: 0,
-    height: '300px',
-    color: '#fff',
-    lineHeight: '300px',
-    textAlign: 'center',
-    background: '#94A3B8',
+    height: "300px",
+    color: "#fff",
+    lineHeight: "300px",
+    textAlign: "center",
+    background: "#94A3B8",
 };
 
 const PreviewData = () => {
-
     const [curSlide, setCurSlide] = useState(0);
     const [imgUrlList, setImgUrlList] = useState([]);
     const store = useStore();
@@ -42,7 +41,7 @@ const PreviewData = () => {
     };
 
     const handleComClick = () => {
-        console.log("组合")
+        console.log("组合");
     };
 
     const columns = [
@@ -52,10 +51,10 @@ const PreviewData = () => {
             key: '1',
         },
         {
-            title: '值',
-            dataIndex: 'Invoice_data',
-            key: '2',
-        }
+            title: "值",
+            dataIndex: "Invoice_data",
+            key: "2",
+        },
     ];
 
     return (
@@ -64,18 +63,14 @@ const PreviewData = () => {
                 {imgUrlList.map((value, index) => (
                     <div key={index}>
                         <div style={contentStyle}>
-                            <Image src={value.fileObj}/>
+                            <Image src={value.fileObj} />
                         </div>
                     </div>
                 ))}
             </Carousel>
 
             <div>
-                <Table
-                    columns={columns}
-                    dataSource={data}
-                    pagination={false}
-                />
+                <Table columns={columns} dataSource={data} pagination={false} />
             </div>
 
             <div className="text-center mt-10 h-20">
@@ -84,10 +79,12 @@ const PreviewData = () => {
                     size="large"
                     className="bg-black mb-28 "
                     onClick={handleComClick}
-                >确定组合</Button>
+                >
+                    确定组合
+                </Button>
             </div>
         </div>
     );
-}
+};
 
 export default PreviewData;

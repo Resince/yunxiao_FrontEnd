@@ -20,7 +20,6 @@ function SwiperCard() {
 
     useEffect(() => {
         const updateSlide = async () => {
-            console.log("change");
             const imglist = store.UploadImgStore.getImgList;
             setSlide(await Promise.all(imglist.map((i) => getBase64(i))));
         };

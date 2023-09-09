@@ -7,7 +7,9 @@ const CusLayout = () => {
     return (
         <div>
             <CusHeader />
-            <Outlet />
+            <main>
+                <Outlet />
+            </main>
             <CusFooter />
         </div>
     );

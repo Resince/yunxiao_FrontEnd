@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, Upload, Modal } from "antd";
 import PreviewData from "./PreviewData";
 import { useStore } from "../../store";
-import { uploadImg } from "../../service/uploadImages";
+import { useNavigate } from "react-router-dom";
 
 const bodyStyle = {
     height: "450px",
@@ -11,14 +11,11 @@ const bodyStyle = {
 };
 
 const UploadSide = () => {
-    const [viewFlag, setViewFlag] = useState(false);
+    const navigate = useNavigate();
     const store = useStore();
 
     const handleOnClick = () => {
-        setViewFlag(true);
-        uploadImg(store.UploadImgStore.getImgList.at(0)).then((res) => {
-            console.log(res);
-        });
+        navigate("/resPage")
     };
 
     return (
@@ -31,7 +28,7 @@ const UploadSide = () => {
             >
                 点击识别
             </Button>
-            <Modal
+            {/* <Modal
                 title="识别结果"
                 open={viewFlag}
                 onCancel={() => setViewFlag(false)}
@@ -39,7 +36,7 @@ const UploadSide = () => {
                 bodyStyle={bodyStyle}
             >
                 <PreviewData />
-            </Modal>
+            </Modal> */}
         </div>
     );
 };
