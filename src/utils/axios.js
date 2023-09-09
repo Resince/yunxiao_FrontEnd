@@ -1,6 +1,6 @@
-import axios from 'axios';
+import Axios from 'axios';
 
-const http = axios.create()
+const axios = Axios.create()
 
 
 const beforeRequest = config => {
@@ -8,7 +8,7 @@ const beforeRequest = config => {
     return config
 }
 
-http.interceptors.request.use(beforeRequest)
+axios.interceptors.request.use(beforeRequest)
 
 const responseSuccess = response => {
     return response
@@ -18,6 +18,6 @@ const responseFailed = error => {
     return error
 }
 
-http.interceptors.response.use(responseSuccess, responseFailed)
+axios.interceptors.response.use(responseSuccess, responseFailed)
 
-export default http;
+export default axios;

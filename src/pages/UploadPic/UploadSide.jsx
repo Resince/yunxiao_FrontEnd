@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, Upload, Modal } from "antd";
 import PreviewData from "./PreviewData";
 import { useStore } from "../../store";
-import { useNavigate } from "react-router-dom";
+import { uploadImg } from "../../service/uploadImages";
 
 const bodyStyle = {
     height: "450px",

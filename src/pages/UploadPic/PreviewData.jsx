@@ -31,7 +31,6 @@ const PreviewData = () => {
             console.log(imgUrlList);
         };
         getImgUrl();
-        
     },[])
     
     const onChange = (currentSlide) => {
