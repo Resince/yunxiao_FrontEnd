@@ -13,6 +13,7 @@ function App() {
                     <Route index element={<Home />} />
                     <Route path="Upload" element={<UploadPic />} />
                     <Route path="ResPage" element={<ResPage />} />
+                    <Route path="login" element={<Login />} />
                 </Route>
             </Routes>
         </BrowserRouter>

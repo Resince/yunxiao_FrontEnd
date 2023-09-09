@@ -1,21 +1,13 @@
-import React, { useState } from "react";
-import { Button, Upload, Modal } from "antd";
-import PreviewData from "./PreviewData";
+import React from "react";
+import { Button } from "antd";
 import { useStore } from "../../store";
-import { uploadImg } from "../../service/uploadImages";
-
-const bodyStyle = {
-    height: "450px",
-    overflow: "hidden",
-    overflowY: "scroll",
-};
 
 const UploadSide = () => {
     const navigate = useNavigate();
     const store = useStore();
 
     const handleOnClick = () => {
-        navigate("/resPage")
+        navigate("/resPage");
     };
 
     return (
@@ -28,15 +20,6 @@ const UploadSide = () => {
             >
                 点击识别
             </Button>
-            {/* <Modal
-                title="识别结果"
-                open={viewFlag}
-                onCancel={() => setViewFlag(false)}
-                footer={null}
-                bodyStyle={bodyStyle}
-            >
-                <PreviewData />
-            </Modal> */}
         </div>
     );
 };
