@@ -1,6 +1,7 @@
 import React from "react";
 import { Button } from "antd";
 import { useStore } from "../../store";
+import { useNavigate } from "react-router-dom";
 
 const UploadSide = () => {
     const navigate = useNavigate();
