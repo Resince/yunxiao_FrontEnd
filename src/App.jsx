@@ -11,8 +11,8 @@ function App() {
             <Routes>
                 <Route path="/" element={<CusLayout />}>
                     <Route index element={<Home />} />
-                    <Route path="Upload" element={<UploadPic />} />
-                    <Route path="ResPage" element={<ResPage />} />
+                    <Route path="upload" element={<UploadPic />} />
+                    <Route path="resPage" element={<ResPage />} />
                     <Route path="login" element={<Login />} />
                 </Route>
             </Routes>
