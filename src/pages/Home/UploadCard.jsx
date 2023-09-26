@@ -13,9 +13,15 @@ const UploadCard = () => {
         return false;
     };
 
+    //声明标志变量保证在上传多张图片时handleChange只执行一次
+    let isHandlingChange = false;
     const handleChange = (info) => {
+        if (isHandlingChange) return;
+        console.log(info.fileList);
         if (info.file.status !== "uploading") {
-            store.UploadImgStore.initImg(info.fileList);
+            info.fileList.map(i => store.UploadImgStore.addImg(i));
+            // store.UploadImgStore.initImg(info.fileList);
+            isHandlingChange = true;
             navigate("/upload");
         }
     };

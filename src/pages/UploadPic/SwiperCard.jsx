@@ -11,8 +11,6 @@ import "swiper/css/navigation";
 import "swiper/css/thumbs";
 
 import { FreeMode, Navigation, Thumbs } from "swiper/modules";
-import getBase64 from "@/utils/getBase64";
-
 function SwiperCard() {
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
     const [slide, setSlide] = useState([]);
@@ -20,14 +18,15 @@ function SwiperCard() {
 
     useEffect(() => {
         const updateSlide = async () => {
-            const imglist = store.UploadImgStore.getImgList;
-            setSlide(await Promise.all(imglist.map((i) => getBase64(i))));
+            const imglist = JSON.parse(sessionStorage.getItem('imgList'));
+            setSlide(imglist)
         };
         updateSlide();
     }, [store.UploadImgStore.getImgListLength]);
 
     function handleClick(e) {
-        store.UploadImgStore.deleteImg(e.fileName);
+        console.log(e);
+        store.UploadImgStore.deleteImg(e);
     }
 
     function handleFocus(e) {
@@ -79,7 +78,7 @@ function SwiperCard() {
                         <SwiperSlide key={index}>
                             <div className="group/item">
                                 <button
-                                    onClick={() => handleClick(value)}
+                                    onClick={() => handleClick(index)}
                                     className="flex items-center justify-center relative
                                         left-44 top-7 z-50 h-6 w-6 bg-black rounded-full bg-transparent
                                          hover:bg-orange-900 invisible group-hover/item:visible "

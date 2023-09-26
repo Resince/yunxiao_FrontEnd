@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useStore } from "../../store";
 import { Carousel, Table, Image } from "antd";
-import getBase64 from "@/utils/getBase64";
 import { uploadImg, uploadImgLocal } from "../../service/uploadImages";
 
 const ResPage = () => {
@@ -14,8 +13,8 @@ const ResPage = () => {
 
     useEffect(() => {
         const getImgUrl = async () => {
-            const imglist = store.UploadImgStore.getImgList;
-            setImgUrlList(await Promise.all(imglist.map((i) => getBase64(i))));
+            const imglist = JSON.parse(sessionStorage.getItem('imgList'));
+            setImgUrlList(imglist);
         };
         getImgUrl();
     }, []);
@@ -93,7 +92,7 @@ const ResPage = () => {
 
     return (
         <div className="grid grid-cols-11 gap-2 h-full">
-            <div className="col-start-1 col-end-9 m">
+            <div className="col-start-1 col-end-9 m mt-5">
                 <Carousel afterChange={(item) => setCurrentSlide(item)}>
                     {imgUrlList.map((value, index) => (
                         <div key={index} className="ml-28">
@@ -107,7 +106,7 @@ const ResPage = () => {
                 </Carousel>
             </div>
 
-            <div className="col-start-9 col-end-12">
+            <div className="col-start-9 col-end-12 mt-5">
                 <div>
                     <Table
                         columns={columns}

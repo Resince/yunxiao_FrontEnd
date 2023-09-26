@@ -1,22 +1,22 @@
-import http from "../utils/axios";
+import axios from "../utils/axios";
 
 export function uploadImgList(imgList) {
     const formdata = new FormData();
     imgList.map(item => {
         formdata.append("file", item);
     })
-    const res = http.post("dev/nvoice/reg", formdata);
+    const res = axios.post("dev/nvoice/reg", formdata);
     return res;
 }
 
 export function uploadImg(img) {
     const formdata = new FormData();
     formdata.append("file", img)
-    return http.post("dev/invoice/reg", formdata);
+    return axios.post("dev/invoice/reg", formdata);
 }
 
 export function uploadImgLocal(img) {
     const formdata = new FormData();
     formdata.append("file", img)
-    return http.post("local/upload", formdata);
+    return axios.post("local/upload", formdata);
 }
