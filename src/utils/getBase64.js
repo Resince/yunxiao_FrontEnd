@@ -13,6 +13,7 @@ const getBase64 = (file) =>
                 ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
                 //图片压缩
                 let data = canvas.toDataURL(file.type, 0.5);
+                console.log(data);
                 resolve({ fileName: file.name, fileObj: data });
             };
             img.src = event.target.result;

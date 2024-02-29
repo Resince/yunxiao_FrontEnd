@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import UploadPic from "./pages/UploadPic";
 import ResPage from "./pages/ResPage";
 import CusLayout from "./layout/Layout";
+import Admin from "./pages/Admin";
 
 function App() {
     return (
@@ -15,6 +16,7 @@ function App() {
                     <Route path="resPage" element={<ResPage />} />
                     <Route path="login" element={<Login />} />
                 </Route>
+                <Route path="/admin" element={<Admin />} />
             </Routes>
         </BrowserRouter>
     );

@@ -8,7 +8,10 @@ const CusHeader = () => {
         navigate("/login");
     };
 
-    const handleRegister = () => {};
+    const handleRegister = () => {
+        // 测试审核端
+        navigate("/admin");
+    };
 
     return (
         <div className="top-0  w-full flex items-center h-16 justify-between bg-slate-100  shadow-xl">
