@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { observer } from "mobx-react-lite";
 import RbmApproval from "./RbmApproval";
 import PersonalHome from "./PersonalHome";
+import MyMessage from "./MyMessage";
 import { ScheduleOutlined, CaretDownOutlined, LogoutOutlined } from "@ant-design/icons";
 import { Input, Popover, Tag } from 'antd';
 import { useNavigate } from "react-router-dom";
@@ -62,6 +63,7 @@ const ContentView = observer(({ store }) => {
         switch (menuItem) {
             case '报销审批': return (<RbmApproval store={store} />);
             case '个人主页': return (<PersonalHome store={store} />);
+            case '我的消息': return (<MyMessage store={store} />);
         }
     }
 

@@ -18,13 +18,6 @@ const PersonalHome = observer(({ store }) => {
     const showModal = () => {
         store.PersonalHomeStore.showModal()
     }
-    // const handleOk = () => {
-    //     setConfirmLoading(true);
-    //     setTimeout(() => {
-    //         setOpen(false);
-    //         setConfirmLoading(false);
-    //     }, 1000)
-    // }
     const handleCancel = () => {
         console.log('取消编辑');
         store.PersonalHomeStore.closeModal();
@@ -57,18 +50,12 @@ const PersonalHome = observer(({ store }) => {
                 >编 辑</button>
                 <Modal
                     title="修改信息"
-                    // open={open}
-                    // onOk={handleOk}
-                    // confirmLoading={confirmLoading}
                     open={store.PersonalHomeStore.editFlag}
                     onCancel={handleCancel}
                     footer={[
                         <Button key="back" onClick={handleCancel}>
                             取消
                         </Button>,
-                        // <Button key="submit" onClick={handleOk} style={{ backgroundColor: '#7A88FE' }} className='text-white hover:text-yellow-100'>
-                        //     确定
-                        // </Button>
                     ]}
                 >
                     <InfoEdit store = {store} />

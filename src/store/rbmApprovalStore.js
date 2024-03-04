@@ -51,7 +51,7 @@ class RbmApprovalStore {
     datalist = data;
 
     constructor() {
-        makeAutoObservable(this)
+        makeAutoObservable(this);
     }
     getDatalistInfo(select) {
         console.log(select);

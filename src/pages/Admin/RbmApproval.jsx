@@ -1,59 +1,13 @@
-import { Table, Tag, Button } from 'antd';
+import { Table, Tag, Button, Modal } from 'antd';
 import { useState } from 'react';
 import { observer } from "mobx-react-lite";
+import RbmInfo from './RbmInfo';
 
-const columns = [
-    {
-        title: '报销日期',
-        dataIndex: 'invoicingDate',
-        key: 'invoicingDate',
-    },
-    {
-        title: '发票代码',
-        dataIndex: 'number',
-        key: 'number',
-        render: (text) => <a className='text-blue-500 hover:text-blue-60'>{text}</a>,
-    },
-    {
-        title: '报销部门',
-        dataIndex: 'department',
-        key: 'department',
-    },
-    {
-        title: '报销人',
-        dataIndex: 'name',
-        key: 'name',
-    },
-    {
-        title: '报销金额',
-        dataIndex: 'money',
-        key: 'money',
-    },
-    {
-        title: '查验结果',
-        key: 'status',
-        dataIndex: 'status',
-        render: (status) => {
-            let color = status === 1 ? 'green' : 'red';
-            let content = status === 1 ? '有效' : '无效'
-            return (
-                <Tag color={color} key={status}>
-                    {content}
-                </Tag>
-            )
-        },
-    },
-    {
-        title: '报销状态',
-        key: 'result',
-        dataIndex: 'result',
-        render: (result) => <a>{result}</a>
-    },
-];
 const RbmApproval = observer(({ store }) => {
     const [selectedRowKeys, setSelectedRowKeys] = useState([]);
     const [filter, setFilter] = useState('全部'); // 筛选条件，默认为"All"
     const [data, getData] = useState(store.RbmApprovalStore.datalist);
+    const [open, setOpen] = useState(false);
 
     const onSelectChange = (newSelectedRowKeys) => {
         console.log('selectedRowKeys changed: ', newSelectedRowKeys);
@@ -70,6 +24,74 @@ const RbmApproval = observer(({ store }) => {
             console.log(data[index]);
         })
     }
+    const showModal = () => {
+        // store.PersonalHomeStore.showModal()
+        console.log('点击')
+        setOpen(true);
+    }
+    // const handleOk = () => {
+    //     setConfirmLoading(true);
+    //     setTimeout(() => {
+    //         setOpen(false);
+    //         setConfirmLoading(false);
+    //     }, 1000)
+    // }
+    const handleCancel = () => {
+        console.log('取消编辑');
+        // store.PersonalHomeStore.closeModal();
+        setOpen(false);
+    }
+
+    const columns = [
+        {
+            title: '报销日期',
+            dataIndex: 'invoicingDate',
+            key: 'invoicingDate',
+        },
+        {
+            title: '发票代码',
+            dataIndex: 'number',
+            key: 'number',
+            render: (text) => <button className='text-blue-500 hover:text-blue-60' onClick={() => { showModal() }}>{text}</button>,
+        },
+        {
+            title: '报销部门',
+            dataIndex: 'department',
+            key: 'department',
+        },
+        {
+            title: '报销人',
+            dataIndex: 'name',
+            key: 'name',
+        },
+        {
+            title: '报销金额',
+            dataIndex: 'money',
+            key: 'money',
+        },
+        {
+            title: '查验结果',
+            key: 'status',
+            dataIndex: 'status',
+            render: (status) => {
+                let color = status === 1 ? 'green' : 'red';
+                let content = status === 1 ? '有效' : '无效'
+                return (
+                    <Tag color={color} key={status}>
+                        {content}
+                    </Tag>
+                )
+            },
+        },
+        {
+            title: '报销状态',
+            key: 'result',
+            dataIndex: 'result',
+            render: (result) => <a>{result}</a>
+        },
+    ];
+
+
     return (
         <div>
             <div className="flex justify-between bg-white mb-1.5 rounded-md" >
@@ -98,6 +120,18 @@ const RbmApproval = observer(({ store }) => {
                     y: 440,
                 }}
             />
+            <Modal
+                title="修改信息"
+                open={open}
+                onCancel={handleCancel}
+                footer={[
+                    <Button key="back" onClick={handleCancel}>
+                        取消
+                    </Button>,
+                ]}
+            >
+                <RbmInfo />
+            </Modal>
             <div
                 style={{
                     marginBottom: 16,

@@ -7,7 +7,7 @@ class AdminMenuStore {
     currentTime = moment();
 
     constructor() {
-        makeAutoObservable(this)
+        makeAutoObservable(this);
     }
 
     setActiveMenu(menu) {

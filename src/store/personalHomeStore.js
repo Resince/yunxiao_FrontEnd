@@ -38,7 +38,7 @@ class PersonalHomeStore {
     editFlag = false;
 
     constructor() {
-        makeAutoObservable(this)
+        makeAutoObservable(this);
     }
     getPersonalInfo() {
         // this.dataInfo = data;

@@ -7,9 +7,9 @@ import ContentView from "./ContentView";
 const Admin = observer(() => {
     const store = useStore();
     return (
-        <div className="flex min-h-screen">
+        <div className="flex min-h-screen overflow-hidden">
             <LeftMenu store={store} />
-            <ContentView store={store} />
+            <ContentView store={store}/>
         </div>
     )
 })
