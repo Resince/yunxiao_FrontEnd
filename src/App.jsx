@@ -1,21 +1,10 @@
-import { Route, BrowserRouter, Routes } from "react-router-dom";
-import Login from "./pages/Login";
-import Home from "./pages/Home";
-import UploadPic from "./pages/UploadPic";
-import ResPage from "./pages/ResPage";
-import CusLayout from "./layout/Layout";
+import { BrowserRouter } from "react-router-dom";
+import MyRoutes from "@/routes";
 
 function App() {
     return (
         <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<CusLayout />}>
-                    <Route index element={<Home />} />
-                    <Route path="upload" element={<UploadPic />} />
-                    <Route path="resPage" element={<ResPage />} />
-                    <Route path="login" element={<Login />} />
-                </Route>
-            </Routes>
+            <MyRoutes />
         </BrowserRouter>
     );
 }

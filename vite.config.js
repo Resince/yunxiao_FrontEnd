@@ -1,14 +1,16 @@
 import { defineConfig } from 'vite'
-import { join } from "path"
+import { resolve } from "path";
 import react from '@vitejs/plugin-react'
+
+const pathResolve = (dir) => resolve(__dirname, dir);
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      '@': join(__dirname, 'src'),
-    }
+      "@": pathResolve("./src"), 
+    },
   },
   server: {
     proxy: {

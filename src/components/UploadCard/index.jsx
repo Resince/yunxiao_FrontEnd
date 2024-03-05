@@ -1,6 +1,5 @@
-import React from "react";
 import { Upload } from "antd";
-import { useStore } from "../../store";
+import { useStore } from "@/store/index";
 import { useNavigate } from "react-router-dom";
 
 const UploadCard = () => {

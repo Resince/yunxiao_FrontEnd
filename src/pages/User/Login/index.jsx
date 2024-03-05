@@ -2,7 +2,7 @@ import React from "react";
 import { QRCode, Space, Image } from "antd";
 const Login = () => {
     const [text, setText] = React.useState("https://ant.design/");
-    
+
     return (
         <div className="grid grid-cols-2 h-screen">
             <div className="flex flex-col gap-4 rounded-2xl shadow-2xl items-center justify-center my-28 ml-56 mr-36 bg-gray-100">

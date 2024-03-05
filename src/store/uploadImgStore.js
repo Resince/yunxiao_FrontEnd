@@ -1,5 +1,5 @@
 import { runInAction, computed, makeAutoObservable, toJS } from 'mobx';
-import getBase64 from '../utils/getBase64';
+import getBase64 from './utils/getBase64';
 
 let storage = window.sessionStorage;
 
@@ -25,7 +25,7 @@ class UploadImgStore {
             runInAction(() => {
                 this.imgList.push(res);
                 storage.setItem('imgList', JSON.stringify(this.imgList));
-            }) 
+            })
         })
     }
 
@@ -50,6 +50,6 @@ class UploadImgStore {
         return this.imgList.length;
     }
 
-} 
+}
 
 export default new UploadImgStore()

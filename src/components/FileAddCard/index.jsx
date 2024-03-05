@@ -1,7 +1,6 @@
-import React from "react";
 import { CommentOutlined } from "@ant-design/icons";
 import { FloatButton, Upload } from "antd";
-import { useStore } from "../../store";
+import { useStore } from "@/store/index";
 import { observer } from "mobx-react-lite";
 
 const AddButton = () => {

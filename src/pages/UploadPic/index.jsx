@@ -1,7 +1,7 @@
 import { React } from "react";
 import SwiperCard from "./SwiperCard";
 import UploadSide from "./UploadSide";
-import AddButton from "./AddButton";
+import AddButton from "../../components/FileAddCard";
 import { observer } from "mobx-react-lite";
 
 function UploadPic() {

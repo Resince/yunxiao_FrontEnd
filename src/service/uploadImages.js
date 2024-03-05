@@ -1,4 +1,4 @@
-import axios from "../utils/axios";
+import axios from "../store/utils/axios";
 
 export function uploadImgList(imgList) {
     const formdata = new FormData();
