@@ -1,35 +1,65 @@
-import React from "react";
-import { QRCode, Space, Image } from "antd";
+import { useState } from "react";
+import "./index.scss";
+
 const Login = () => {
-    const [text, setText] = React.useState("https://ant.design/");
+    const [toggleState, useToggleState] = useState(false);
 
     return (
-        <div className="grid grid-cols-2 h-screen">
-            <div className="flex flex-col gap-4 rounded-2xl shadow-2xl items-center justify-center my-28 ml-56 mr-36 bg-gray-100">
-                <Image
-                    width={80}
-                    preview={false}
-                    src="src\assets\logo.png"
-                    className="rounded-2xl shadow-2xl basis-1/4"
-                />
-                <div className="text-2xl">登录</div>
-                <div className="text-lg">使用微信扫码即可完成登录</div>
-                <div className="mx-auto">
-                    <Space direction="vertical" align="center" size={180}>
-                        <QRCode value={text || "-"} />
-                    </Space>
+        <div className="login_container">
+            <div
+                className={
+                    toggleState ? "right-panel-active container" : "container"
+                }
+            >
+                <div className="form-container sign-up-container">
+                    <form action="#">
+                        <h1 className="text-2xl mb-3">创建账户</h1>
+                        <input type="text" placeholder="Name" />
+                        <input type="email" placeholder="Email" />
+                        <input type="password" placeholder="Password" />
+                        <button>注册</button>
+                    </form>
                 </div>
-            </div>
-            <div className="flex flex-col gap-7 items-center justify-center bg-slate-200">
-                <Image
-                    width={600}
-                    preview={false}
-                    className="rounded-2xl shadow-2xl -mt-20"
-                    src="src\assets\shewpic.png"
-                />
-                <div className="text-4xl">对我们网站的介绍</div>
-                <div className="text-2xl">
-                    云销可以帮你快速识别发票，审核发票，跟踪流程
+                <div className="form-container sign-in-container">
+                    <form action="#">
+                        <h1 className="text-2xl mb-3">登录系统</h1>
+                        <input type="email" placeholder="Email" />
+                        <input type="password" placeholder="Password" />
+                        {/* <a href="#">忘记密码?</a> */}
+                        <button>登录</button>
+                    </form>
+                </div>
+                <div className="overlay-container">
+                    <div className="overlay">
+                        <div className="overlay-panel overlay-left">
+                            <h1>你好！</h1>
+                            <p>
+                                请输入邮箱作为你的登录名，并取一个合适的名称作为你的昵称吧
+                            </p>
+                            <button
+                                className="ghost"
+                                onClick={() => {
+                                    useToggleState(false);
+                                }}
+                            >
+                                登录
+                            </button>
+                        </div>
+                        <div className="overlay-panel overlay-right">
+                            <h1>你好，尊敬的用户</h1>
+                            <p>
+                                欢迎使用云销，请输入你的邮箱地址和密码进行登录
+                            </p>
+                            <button
+                                className="ghost "
+                                onClick={() => {
+                                    useToggleState(true);
+                                }}
+                            >
+                                注册
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

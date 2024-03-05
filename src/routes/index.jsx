@@ -10,6 +10,7 @@ import BasicLayout from "@/layout/BasicLayout";
 import NoFoundPage from "@/pages/404";
 import DataTablePage from "@/pages/DataDisplay/DataTablePage";
 import DataListPage from "@/pages/DataDisplay/DataListPage";
+import Admin from "@/pages/Admin";
 
 const MyRoutes = () => {
     const element = useRoutes([
@@ -51,6 +52,10 @@ const MyRoutes = () => {
                     element: <ResDisply />,
                 },
             ],
+        },
+        {
+            path: "/admin",
+            element: <Admin />,
         },
         {
             path: "/login",
