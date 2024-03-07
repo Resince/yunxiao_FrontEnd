@@ -31,7 +31,6 @@ const LeftMenu = observer(({ store }) => {
                                 ? 'bg-custom-purple text-white'
                                 : 'hover:bg-purple-100'
                             }`}
-                        // Apply a margin to make the width effectively 80%
                         style={{ margin: '2% 10%' }}
                         onClick={() => store.AdminMenuStore.setActiveMenu(item.title)}
                     >

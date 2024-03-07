@@ -5,6 +5,7 @@ import AdminMenuStore from './adminMenuStore';
 import RbmApprovalStore from './rbmApprovalStore';
 import PersonalHomeStore from './personalHomeStore';
 import MyMessageStore from './myMessageStore';
+import FinancialHomeStore from './financialHomeStore';
 
 class Store {
     constructor() {
@@ -13,6 +14,7 @@ class Store {
         this.RbmApprovalStore = RbmApprovalStore;
         this.PersonalHomeStore = PersonalHomeStore;
         this.MyMessageStore = MyMessageStore;
+        this.FinancialHomeStore = FinancialHomeStore;
     }
 }
 

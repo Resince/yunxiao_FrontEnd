@@ -2,7 +2,7 @@ import React from 'react';
 import { observer } from 'mobx-react-lite';
 import { useEffect, useState } from 'react';
 import { Modal, Button } from 'antd';
-import InfoEdit from './InfoEdit';
+import InfoEdit from './component/InfoEdit';
 
 const PersonalHome = observer(({ store }) => {
 
@@ -24,6 +24,7 @@ const PersonalHome = observer(({ store }) => {
     }
 
     // InfoItem组件用来展示每项信息
+    // eslint-disable-next-line react/prop-types
     const InfoItem = ({ title, value }) => (
         <div className="flex justify-between mt-6 w-72">
             <h3 className="text-left text-gray-500">{title}：</h3>
@@ -44,8 +45,8 @@ const PersonalHome = observer(({ store }) => {
                     </div>
                 </div>
                 <button
-                    className="py-1.5 px-4 mx-6 text-white rounded"
-                    style={{ backgroundColor: '#7A88FE' }}
+                    className="py-1.5 px-4 mx-6 text-white rounded bg-tag-purple"
+                    // style={{ backgroundColor: '#7A88FE' }}
                     onClick={showModal}
                 >编 辑</button>
                 <Modal
@@ -64,7 +65,7 @@ const PersonalHome = observer(({ store }) => {
             <div className="flex flex-row flex-grow">
                 <div className="p-2 pr-0 w-1/3">
                     <div className='bg-white p-3 place-content-center '>
-                        <img src='/src/assets/logo.png' className='h-96 w-4/5 mx-auto pt-4' />
+                        <img src='/src/assets/homePic4.png' className='h-96 w-4/5 mx-auto pt-4' />
                         <div className='w-4/5 mx-auto flex flex-col space-y-2 pt-4 text-gray-500 text-xl mb-2'>
                             <div>工号：{data.workId}</div>
                             <div>职位：{data.position}</div>
@@ -75,7 +76,7 @@ const PersonalHome = observer(({ store }) => {
                 </div>
                 <div className="p-2 w-2/3 ">
                     <div className='bg-white h-full'>
-                        <div className='w-24 h-8 flex items-center justify-center' style={{ backgroundColor: '#7A88FE', color: '#FFC300' }}>基本信息</div>
+                        <div className='w-24 h-8 flex items-center justify-center text-tagtext-yellow bg-tag-purple'>基本信息</div>
                         <div className="flex flex-wrap -mx-2  justify-center mx-10">
                             {/* 基本信息列（左边） */}
                             <div className="w-full md:w-1/2">
@@ -91,7 +92,7 @@ const PersonalHome = observer(({ store }) => {
                             </div>
                         </div>
 
-                        <div className='w-24 h-8 mt-2 flex items-center justify-center' style={{ backgroundColor: '#7A88FE', color: '#FFC300' }}>个人信息</div>
+                        <div className='w-24 h-8 mt-2 flex items-center justify-center text-tagtext-yellow bg-tag-purple'>个人信息</div>
                         <div className="flex flex-wrap -mx-2  justify-center mx-10">
                             {/* 基本信息列（左边） */}
                             <div className="w-full md:w-1/2">

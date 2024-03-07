@@ -1,7 +1,15 @@
 import React from "react";
 import { QRCode, Space, Image } from "antd";
+import { useNavigate } from "react-router-dom";
+
 const Login = () => {
     const [text, setText] = React.useState("https://ant.design/");
+    const navigate = useNavigate();
+
+    // 测试审核端
+    const handleAdmin = () => {
+        navigate("/admin");
+    };
 
     return (
         <div className="grid grid-cols-2 h-screen">
@@ -31,6 +39,7 @@ const Login = () => {
                 <div className="text-2xl">
                     云销可以帮你快速识别发票，审核发票，跟踪流程
                 </div>
+                <button onClick={handleAdmin}>进入审核</button>
             </div>
         </div>
     );

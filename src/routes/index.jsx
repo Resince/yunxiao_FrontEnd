@@ -10,6 +10,7 @@ import BasicLayout from "@/layout/BasicLayout";
 import NoFoundPage from "@/pages/404";
 import DataTablePage from "@/pages/DataDisplay/DataTablePage";
 import DataListPage from "@/pages/DataDisplay/DataListPage";
+import Admin from "@/pages/Admin";
 
 const MyRoutes = () => {
     const element = useRoutes([
@@ -59,6 +60,10 @@ const MyRoutes = () => {
         {
             path: "*",
             element: <NoFoundPage />,
+        },
+        {
+            path: "/admin",
+            element: <Admin />,
         },
     ]);
     return element;
