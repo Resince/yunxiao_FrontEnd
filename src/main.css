@@ -1,0 +1,19 @@
+/* tailwindcss 配置 */
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+/* css全局配置 */
+:root {
+    --custom-purple: #7948ea;
+    --custom-orange: #fd8d14;
+    /* 具体看 https://colorhunt.co/palette/cece5affe17bfd8d14c51605 */
+    --custom-red: #c51605;
+    --custom-yellow: #ffe17b;
+    --custom-green: #cece5a;
+    --custom-grey-bg: #f6f5f7;
+    --custom-white: #f2f5f7;
+    --custom-color-black-title: #33333b;
+    --custom-color-black-text: #47474f;
+    --custom-font: Source Sans Pro, source han sans, Arial, sans-serif;
+}

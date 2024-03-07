@@ -5,13 +5,17 @@ import "./index.css";
 
 const GlobalHeader = () => {
     const navigate = useNavigate();
-    const [current, setCurrent] = useState("mail");
 
     return (
-        <header className="header-outer">
+        <header className="header-outer header-wrapper">
             <div className="header-inner responsive-wrapper">
-                <div className="header-logo">
-                    <img src={SITE_LOGO_P2} />
+                <div
+                    className="header-logo"
+                    onClick={() => {
+                        navigate("/");
+                    }}
+                >
+                    <img src={SITE_LOGO_P2} width="210" />
                 </div>
                 <nav className="header-navigation">
                     <a href="/uploadFile">报销单生成</a>

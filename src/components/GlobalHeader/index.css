@@ -13,20 +13,24 @@
     --header-bg: #fff;
 }
 
-/* body {
-	font-family: "DM Sans", sans-serif;
-	background-color: #f2f5f7;
-	line-height: 1.5;
-	min-height: 300vh;
-	position: relative;
-} */
-
 .responsive-wrapper {
     width: 90%;
     max-width: 1380px;
     margin-left: auto;
     margin-right: auto;
+
+    /* foot */
+    font-family: var(--custom-font);
+    color: var(--custom-color-black-text);
 }
+
+/* body {
+    font-family: "DM Sans", sans-serif;
+    background-color: #f2f5f7;
+    line-height: 1.5;
+    min-height: 300vh;
+    position: relative;
+} */
 
 /* Sticky header */
 .header-outer {
@@ -59,7 +63,6 @@
 /* Styling of other elements */
 .header-logo img {
     display: block;
-    height: calc(var(--header-inner-height) - 30px);
 }
 
 .header-navigation {

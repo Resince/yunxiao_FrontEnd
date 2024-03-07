@@ -8,6 +8,8 @@ export default {
         'contentbg': '#D9E7FF',
         'tag-purple': '#7A88FE',
         'tagtext-yellow': '#FFC300',
+        'custom-orange': "#FD8D14",
+        "custom-red": "#C51605"
       },
     },
   },

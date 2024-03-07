@@ -54,6 +54,10 @@ const MyRoutes = () => {
             ],
         },
         {
+            path: "/admin",
+            element: <Admin />,
+        },
+        {
             path: "/login",
             element: <Login />,
         },
