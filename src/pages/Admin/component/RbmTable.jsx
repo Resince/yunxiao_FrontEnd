@@ -25,15 +25,19 @@ const RbmTable = ({data}) => {
             data.splice(index, 1);
             console.log(data[index]);
         })
-    }
+    };
     const showModal = () => {
         console.log('点击')
         setOpen(true);
-    }
+    };
     const handleCancel = () => {
         console.log('取消编辑');
         setOpen(false);
-    }
+    };
+    // const handleOk = (value) => {
+    //     console.log('确定编辑');
+    //     setOpen(false);
+    // };
 
     const columns = [
         {
@@ -42,7 +46,7 @@ const RbmTable = ({data}) => {
             key: 'invoicingDate',
         },
         {
-            title: '发票代码',
+            title: '报销单号',
             dataIndex: 'number',
             key: 'number',
             render: (text) => <button className='text-blue-500 hover:text-blue-60' onClick={() => { showModal() }}>{text}</button>,
@@ -107,9 +111,12 @@ const RbmTable = ({data}) => {
                     <Button key="back" onClick={handleCancel}>
                         取消
                     </Button>,
+                    // <Button key="confirm" onClick={handleOk} className='bg-tag-purple text-white hover:text-white-900'>
+                    //     确定
+                    // </Button>,
                 ]}
             >
-                <RbmInfo />
+                <RbmInfo/>
             </Modal>
             <div
                 style={{

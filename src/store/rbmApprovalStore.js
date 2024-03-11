@@ -49,10 +49,13 @@ for (let i = 4; i < 50; i++) {
 class RbmApprovalStore {
     // 默认选中的菜单
     datalist = data;
+    searchTerm = '';
+    searchResults = [];
 
     constructor() {
         makeAutoObservable(this);
     }
+
     getDatalistInfo(select) {
         console.log(select);
         this.datalist = [];
@@ -79,8 +82,27 @@ class RbmApprovalStore {
         }
         return this.datalist;
     }
-
     
+    setSearchTerm(term) {
+        this.searchTerm = term;
+        this.searchDataInfo();
+    } 
+
+    searchDataInfo() {
+        if (this.number === '') this.searchResults = [];
+        else {
+            this.searchResults = data.filter(item => item.number.includes(this.searchTerm));
+        }
+    }
+
+    get isSearchEmpty() {
+        console.log(this.searchTerm);
+        return this.searchTerm === '';
+    }
+
+    handleResult(value) {
+        console.log(value);
+    }
 }
 
 export default new RbmApprovalStore();

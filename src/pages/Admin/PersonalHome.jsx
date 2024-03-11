@@ -17,11 +17,11 @@ const PersonalHome = observer(({ store }) => {
     // 表单弹窗打开状态和操作函数
     const showModal = () => {
         store.PersonalHomeStore.showModal()
-    }
+    };
     const handleCancel = () => {
         console.log('取消编辑');
         store.PersonalHomeStore.closeModal();
-    }
+    };
 
     // InfoItem组件用来展示每项信息
     // eslint-disable-next-line react/prop-types

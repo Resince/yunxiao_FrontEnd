@@ -13,6 +13,7 @@ const Login = () => {
 
     return (
         <div className="login_container">
+            <button onClick={handleAdmin}>进入审核</button>
             <div
                 className={
                     toggleState ? "right-panel-active container" : "container"
@@ -68,7 +69,6 @@ const Login = () => {
                         </div>
                     </div>
                 </div>
-                <button onClick={handleAdmin}>进入审核</button>
             </div>
         </div>
     );

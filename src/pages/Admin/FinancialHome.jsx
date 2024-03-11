@@ -10,7 +10,7 @@ const FinancialHome = observer(({ store }) => {
     const [tableData, setTableData] = useState([]);
     const handleYearChange = (val) => {
         store.FinancialHomeStore.setSelectedYear(val);
-    }
+    };
 
     useEffect(() => {
         setTableData(store.RbmApprovalStore.getDatalistInfo('未审核'));

@@ -1,15 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import { observer } from "mobx-react-lite";
 import FinancialHome from "./FinancialHome";
 import RbmApproval from "./RbmApproval";
 import PersonalHome from "./PersonalHome";
 import MyMessage from "./MyMessage";
+import RbmTable from "./component/RbmTable";
 import { ScheduleOutlined, CaretDownOutlined, LogoutOutlined } from "@ant-design/icons";
 import { Input, Popover, Tag } from 'antd';
 import { useNavigate } from "react-router-dom";
 const { Search } = Input;
 
-const onSearch = (value, _e, info) => console.log(info?.source, value);
 
 const ContentView = observer(({ store }) => {
     const attendanceInfo = store.AdminMenuStore.getAttendanceInfo();
@@ -60,12 +60,17 @@ const ContentView = observer(({ store }) => {
         </div>
     )
 
+    const onSearch = (value) => {
+        console.log(value);
+        store.RbmApprovalStore.setSearchTerm(value);
+    }
+
     const getContent = (menuItem) => {
         switch (menuItem) {
             case '报销审批': return (<RbmApproval store={store} />);
             case '个人主页': return (<PersonalHome store={store} />);
             case '我的消息': return (<MyMessage store={store} />);
-            case '财务门户': return (<FinancialHome store={store} />)
+            case '财务门户': return (<FinancialHome store={store} />);
         }
     }
 
@@ -95,7 +100,13 @@ const ContentView = observer(({ store }) => {
                     </Popover>
                 </div>
             </div>
-            {getContent(store.AdminMenuStore.activeMenu)}
+            {
+                store.RbmApprovalStore.isSearchEmpty ?
+                    getContent(store.AdminMenuStore.activeMenu) : 
+                    (
+                        <RbmTable data={store.RbmApprovalStore.searchResults} />
+                    )
+            }
         </div>
     )
 });
