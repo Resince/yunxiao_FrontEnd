@@ -1,11 +1,14 @@
 import { Table, Tag, Button, Modal } from 'antd';
 import { useState,useEffect } from 'react';
 import RbmInfo from './RbmInfo';
+import { useStore } from "../../../store";
+import { observer } from 'mobx-react-lite';
 
-const RbmTable = ({data}) => {
+const RbmTable = observer(({data}) => {
     const [selectedRowKeys, setSelectedRowKeys] = useState([]);
     const [tableData, setData] = useState(data);
-    const [open, setOpen] = useState(false);
+    const [number, setNumber] = useState('');
+    const store = useStore();
 
     useEffect(() => {
         setData(data);
@@ -21,23 +24,23 @@ const RbmTable = ({data}) => {
     };
     const hasSelected = selectedRowKeys.length > 0;
     const deleteInvoice = () => {
-        selectedRowKeys.map((index) => {
-            data.splice(index, 1);
-            console.log(data[index]);
-        })
+        const newData = [...tableData]; // 创建一个新的数据副本
+        selectedRowKeys.forEach((index) => {
+            newData.splice(index, 1); // 删除选中行
+        });
+        setData(newData); // 更新tableData
+        setSelectedRowKeys([]); // 清空选中行
     };
-    const showModal = () => {
-        console.log('点击')
-        setOpen(true);
+
+    const showModal = (val) => {
+        console.log('点击' + val)
+        store.RbmApprovalStore.showInfo();
+        setNumber(val);
     };
     const handleCancel = () => {
         console.log('取消编辑');
-        setOpen(false);
+        store.RbmApprovalStore.closeInfo();
     };
-    // const handleOk = (value) => {
-    //     console.log('确定编辑');
-    //     setOpen(false);
-    // };
 
     const columns = [
         {
@@ -49,7 +52,7 @@ const RbmTable = ({data}) => {
             title: '报销单号',
             dataIndex: 'number',
             key: 'number',
-            render: (text) => <button className='text-blue-500 hover:text-blue-60' onClick={() => { showModal() }}>{text}</button>,
+            render: (text) => <button className='text-blue-500 hover:text-blue-60' onClick={() => { showModal(text) }}>{text}</button>,
         },
         {
             title: '报销部门',
@@ -105,18 +108,15 @@ const RbmTable = ({data}) => {
             />
             <Modal
                 title="修改信息"
-                open={open}
+                open={store.RbmApprovalStore.open}
                 onCancel={handleCancel}
                 footer={[
                     <Button key="back" onClick={handleCancel}>
                         取消
                     </Button>,
-                    // <Button key="confirm" onClick={handleOk} className='bg-tag-purple text-white hover:text-white-900'>
-                    //     确定
-                    // </Button>,
                 ]}
             >
-                <RbmInfo/>
+                <RbmInfo number={number} />
             </Modal>
             <div
                 style={{
@@ -136,5 +136,5 @@ const RbmTable = ({data}) => {
             </div>
         </div>
     );
-};
+});
 export default RbmTable;

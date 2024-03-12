@@ -51,6 +51,8 @@ class RbmApprovalStore {
     datalist = data;
     searchTerm = '';
     searchResults = [];
+    selected = '全部';
+    open = false;
 
     constructor() {
         makeAutoObservable(this);
@@ -58,6 +60,7 @@ class RbmApprovalStore {
 
     getDatalistInfo(select) {
         console.log(select);
+        this.selected = select;
         this.datalist = [];
         let j = 0;
         //从后端获取，暂时用静态数据
@@ -77,7 +80,7 @@ class RbmApprovalStore {
                 name: '梨花',
                 money: 123.29,
                 status: i%3,
-                result: (i%3 == 1 || i%3 == 2) ? '审核通过': '被打回',
+                result: (i%3 === 1 || i%3 === 2) ? '审核通过': '被打回',
             })
         }
         return this.datalist;
@@ -100,8 +103,42 @@ class RbmApprovalStore {
         return this.searchTerm === '';
     }
 
-    handleResult(value) {
-        console.log(value);
+    showInfo() {
+        this.open = true;
+    }
+
+    closeInfo() {
+        this.open = false;
+    }
+
+    handleResult(values, number) {
+        console.log(values);
+        // if (this.selected === '全部') {
+        //     // this.datalist[number].result = values.result;
+        //     for (let i = 0; i < data.length; i++) {
+        //         if (data[i].number === number) {
+        //             data[i].result = values.result;
+        //         }
+        //     }
+        // } else if (this.selected === '已审核') {
+        //     for (let i = 0; i < data.length; i++) {
+        //         if (data[i].number === number) {
+        //             data[i].result = values.result;
+        //         }
+        //     }
+        // } else{
+        //     for (let i = 0; i < data.length; i++) {
+        //         if (data[i].number === number) {
+        //             data[i].result = values.result;
+        //         }
+        //     }
+        // }
+        for (let i = 0; i < this.datalist.length; i++) {
+            if (this.datalist[i].number === number) {
+                this.datalist[i].result = values.result;
+            }
+        }
+        this.open = false;
     }
 }
 

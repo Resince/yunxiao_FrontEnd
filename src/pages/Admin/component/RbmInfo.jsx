@@ -6,13 +6,12 @@ import { useStore } from "../../../store";
 
 const { Option } = Select;
 
-const RbmInfo = observer(() => {
+const RbmInfo = observer(({number}) => {
     const store = useStore();
 
     const onFinish = (values) => {
         console.log('Success:', values);
-        store.RbmApprovalStore.handleResult(values);
-
+        store.RbmApprovalStore.handleResult(values, number);
     };
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
@@ -36,9 +35,9 @@ const RbmInfo = observer(() => {
                         placeholder="请选择"
                         allowClear
                     >
-                        <Option value="pass">通过</Option>
-                        <Option value="fall">未通过</Option>
-                        <Option value="return">打回</Option>
+                        <Option value="审核通过">通过</Option>
+                        <Option value="未通过">未通过</Option>
+                        <Option value="被打回">打回</Option>
                     </Select>
                 </FormItem>
                 <FormItem l
