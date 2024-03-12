@@ -43,7 +43,7 @@ const ContentView = observer(({ store }) => {
     const personInfo = (
         <div>
             <div className="flex items-end mb-2">
-                <img src="src\assets\logo.png" className="h-10 w-10 mr-2 rounded-full" alt="Logo" />
+                <img src="src/assets/homePic4.png" className="h-10 w-10 mr-2 rounded-full" alt="Logo" />
                 <div className="flex flex-col">
                     <span>
                         <span className="text-blue-500 cursor-pointer"onClick={() => store.AdminMenuStore.setActiveMenu('个人主页')}>小黄鸭</span>

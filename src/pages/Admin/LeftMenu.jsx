@@ -1,6 +1,7 @@
 import React from "react";
 import { observer } from "mobx-react-lite";
 import { HomeOutlined, AuditOutlined, BarChartOutlined, MessageOutlined, UserOutlined} from "@ant-design/icons";
+import { SITE_LOGO_P2 } from "@/constants"
 
 
 const LeftMenu = observer(({ store }) => {
@@ -16,13 +17,13 @@ const LeftMenu = observer(({ store }) => {
     return (
         <div className="w-64 h-screen flex flex-col items-center pt-8">
             <div className="flex items-end mb-2">
-                <img src="src\assets\logo.png" className="h-12 mr-2 rounded-lg" alt="Logo" />
-                <div className="flex flex-col">
+                <img src={SITE_LOGO_P2} className="h-16 mr-2 rounded-lg" alt="Logo" />
+                {/* <div className="flex flex-col">
                     <span className="font-semibold text-lg text-gray-800">云销</span>
                     <span className="font-semibold text-sm text-gray-800">YUNXIAO</span>
-                </div>
+                </div> */}
             </div>
-            <div className="my-2 mx-2 h-px bg-gray-400 w-2/3 self-center"></div>
+            <div className="mb-2 mx-2 h-px bg-gray-400 w-2/3 self-center"></div>
             <ul className="w-full px-4">
                 {menuItems.map((item, index) => (
                     <li
