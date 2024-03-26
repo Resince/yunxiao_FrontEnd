@@ -16,4 +16,23 @@
     --custom-color-black-title: #33333b;
     --custom-color-black-text: #47474f;
     --custom-font: Source Sans Pro, source han sans, Arial, sans-serif;
+    --custom-font-title: Helvetica, sans-serif;
+}
+
+.combFiles-card::-webkit-scrollbar {
+    z-index: 50;
+    width: 5px;
+    height: 4px;
+    background-color: #cece5a;
+}
+
+.combFiles-card::-webkit-scrollbar-thumb {
+    background-color: #e5322d;
+    border: 1px solid #e5322d;
+    border-radius: 8px;
+}
+
+.combFiles-card::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #f5f5fa;
 }

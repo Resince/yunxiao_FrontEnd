@@ -1,72 +1,121 @@
-import { useRoutes } from "react-router-dom";
-import Home from "@/pages/Home";
-import UploadFile from "@/pages/UploadFile";
-import CombFiles from "@/pages/CombFiles";
-import DownloadFile from "@/pages/DownloadFiles";
-import Login from "@/pages/User/Login";
-import ResDisply from "@/pages/VerifyPage/ResDisplay";
-import UploadVerifyFile from "@/pages/VerifyPage/UploadVerifyFile";
+import { createBrowserRouter } from "react-router-dom";
+import { lazy, Suspense } from "react";
+import AuthRoute from "@/components/AuthRoute";
+import LoadRoute from "@/components/LoadRoute";
 import BasicLayout from "@/layout/BasicLayout";
-import NoFoundPage from "@/pages/404";
-import DataTablePage from "@/pages/DataDisplay/DataTablePage";
-import DataListPage from "@/pages/DataDisplay/DataListPage";
-import Admin from "@/pages/Admin";
+import HomeLayout from "@/layout/HomeLayout";
+import Home from "@/pages/Home";
+import Login from "@/pages/User/Login";
+import Error404 from "@/pages/Error/404";
+import Error403 from "@/pages/Error/403";
+import Letter from "@/pages/Letter";
+import Load from "@/components/Load/basicLoad";
+import UploadFile from "@/pages/UploadFile";
+import UploadVerifyFile from "@/pages/VerifyPage/UploadVerifyFile";
+const CombFiles = lazy(() => import("@/pages/CombFiles"));
+const DownloadFile = lazy(() => import("@/pages/DownloadFiles"));
+const DataTablePage = lazy(() => import("@/pages/DataDisplay/DataTablePage"));
+const DataListPage = lazy(() => import("@/pages/DataDisplay/DataListPage"));
+const ResDisply = lazy(() => import("@/pages/VerifyPage/ResDisplay"));
+const Admin = lazy(() => import("@/pages/Admin"));
 
-const MyRoutes = () => {
-    const element = useRoutes([
-        {
-            path: "/",
-            element: <BasicLayout />,
-            children: [
-                {
-                    index: true,
-                    path: "/",
-                    element: <Home />,
-                },
-                {
-                    path: "uploadFile",
-                    element: <UploadFile />,
-                },
-                {
-                    path: "combFiles",
-                    element: <CombFiles />,
-                },
-                {
-                    path: "downloadFile",
-                    element: <DownloadFile />,
-                },
-                {
-                    path: "dataTablePage",
-                    element: <DataTablePage />,
-                },
-                {
-                    path: "dataListPage",
-                    element: <DataListPage />,
-                },
-                {
-                    path: "uploadVerifyFile",
-                    element: <UploadVerifyFile />,
-                },
-                {
-                    path: "resDisply",
-                    element: <ResDisply />,
-                },
-            ],
-        },
-        {
-            path: "/admin",
-            element: <Admin />,
-        },
-        {
-            path: "/login",
-            element: <Login />,
-        },
-        {
-            path: "*",
-            element: <NoFoundPage />,
-        },
-    ]);
-    return element;
-};
+const myRoutes = createBrowserRouter([
+    {
+        path: "/",
+        element: <HomeLayout />,
+        children: [
+            {
+                path: "/",
+                element: <Home />,
+            },
+        ],
+    },
+    {
+        path: "/user",
+        element: <BasicLayout />,
+        children: [
+            {
+                path: "uploadFile",
+                element: <UploadFile />,
+            },
+            {
+                path: "combFiles",
+                element: (
+                    <Suspense fallback={<div>Loading...</div>}>
+                        <CombFiles />
+                    </Suspense>
+                ),
+            },
+            {
+                path: "downloadFile",
+                element: (
+                    <Suspense fallback={<Load />}>
+                        <DownloadFile />
+                    </Suspense>
+                ),
+            },
+            {
+                path: "dataTablePage",
+                element: (
+                    <AuthRoute role={["admin", "user"]}>
+                        <Suspense fallback={<Load />}>
+                            <LoadRoute>
+                                <DataTablePage />
+                            </LoadRoute>
+                        </Suspense>
+                    </AuthRoute>
+                ),
+            },
+            {
+                path: "dataListPage",
+                element: (
+                    <AuthRoute role={["admin", "user"]}>
+                        <Suspense fallback={<Load />}>
+                            <LoadRoute>
+                                <DataListPage />
+                            </LoadRoute>
+                        </Suspense>
+                    </AuthRoute>
+                ),
+            },
+            {
+                path: "uploadVerifyFile",
+                element: <UploadVerifyFile />,
+            },
+            {
+                path: "resDisply",
+                element: (
+                    <Suspense fallback={<Load />}>
+                        <ResDisply />
+                    </Suspense>
+                ),
+            },
+        ],
+    },
+    {
+        path: "/admin",
+        element: (
+            <AuthRoute role={["admin"]}>
+                <Admin />
+            </AuthRoute>
+        ),
+    },
+    {
+        path: "/login",
+        element: <Login />,
+    },
+    {
+        path: "/letter",
+        element: <Letter />,
+    },
+    {
+        path: "*",
+        element: <Error404 />,
+    },
+    {
+        path: "/noAccess",
+        element: <Error403 />,
+    },
+]);
 
-export default MyRoutes;
+export default myRoutes;

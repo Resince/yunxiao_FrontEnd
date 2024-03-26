@@ -1,0 +1,38 @@
+.ope-contain {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 240px;
+    padding: 0 20px 0;
+    gap: 18px;
+}
+
+.ope-contain > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #d9d9d9;
+    border-radius: 10px;
+    padding: 8px;
+    cursor: pointer;
+    background-color: #d9d9d9;
+    padding-bottom: 40px;
+}
+
+.ope-text-div {
+    position: absolute;
+    width: 270px;
+    padding-top: 9px;
+    padding-right: 1px;
+}
+
+.ope-text {
+    overflow: hidden;
+    display: block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.ope-text-div:hover .ope-text {
+    z-index: 1;
+    overflow: visible;
+}

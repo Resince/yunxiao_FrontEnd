@@ -25,16 +25,27 @@
     }
 
     span {
-        font-size: 12px;
+        display: inline-block;
+        width: 21ch;
+        font: var(--custom-font);
+        overflow: hidden;
+        white-space: nowrap;
+        font-weight: bold;
+        border-right: 1px solid transparent;
     }
-
-    // a {
-    //     color: #333;
-    //     font-size: 14px;
-    //     text-decoration: none;
-    //     margin: 15px 0;
-    // }
-
+    span.myAnimation {
+        animation: typing 1.8s steps(28), caret 1s steps(1);
+    }
+    @keyframes typing {
+        from {
+            width: 0;
+        }
+    }
+    @keyframes caret {
+        50% {
+            border-right-color: currentColor;
+        }
+    }
     button {
         border-radius: 20px;
         border: 1px solid #ff4b2b;
@@ -62,7 +73,7 @@
         border-color: #ffffff;
     }
 
-    form {
+    .form {
         background-color: #ffffff;
         display: flex;
         align-items: center;

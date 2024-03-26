@@ -1,15 +1,15 @@
 import GlobalFooter from "@/components/GlobalFooter";
 import GlobalHeader from "@/components/GlobalHeader";
 import { Outlet } from "react-router-dom";
+import { Fragment } from "react";
 
 export default function BasicLayout() {
     return (
-        <div>
+        <Fragment>
             <GlobalHeader />
             <main>
                 <Outlet />
             </main>
-            <GlobalFooter />
-        </div>
+        </Fragment>
     );
 }

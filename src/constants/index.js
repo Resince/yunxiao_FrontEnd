@@ -17,4 +17,4 @@ export const SITE_LOGO_P1 = '/src/assets/logo_p1.svg';
 /**
  * 网站logo横板
  */
-export const SITE_LOGO_P2 = "/src/assets/logo_p2.svg"
+export const SITE_LOGO_P2 = "/src/assets/logo_p2.png"

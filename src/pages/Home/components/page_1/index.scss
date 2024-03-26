@@ -1,0 +1,97 @@
+.page-1 {
+    
+    --foreground: #1d2c2f;
+    --spacing: 6.8rem;
+    --titleFontSize: 7rem;
+    --subtitleFontSize: 2rem;
+
+    font-size: 62.5%;
+    font-family: var(--custom-font);
+    color: var(--foreground);
+    padding: 1rem var(--spacing) var(--spacing);
+    font-size: 1.4rem;
+    background: var(--custom-grey-bg);
+
+    img {
+        max-width: 100%;
+    }
+
+    svg {
+        fill: currentColor;
+    }
+
+    .StartButton-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-left: 300px;
+        padding-bottom: 50px;
+    }
+
+    .main-titleName {
+        margin-top: 0.5em;
+        margin-bottom: 0.1em;
+        font-size: var(--titleFontSize);
+        font-style: var(--custom-font-title);
+        font-weight: normal;
+        line-height: 1.15;
+        letter-spacing: 0.002em;
+    }
+
+    .main-subtitle {
+        margin-bottom: 0.1em;
+        font-size: var(--subtitleFontSize);
+        line-height: 1.3;
+    }
+
+    .main-images {
+        border-radius: 30px;
+        .images-primary {
+            border-radius: 30px;
+        }
+    }
+
+    /* Grid layout */
+    padding-left: calc(var(--spacing) / 2);
+    display: grid;
+    grid-template-rows: auto 1fr;
+    grid-template-columns: 50px calc(var(--spacing) / 2) 1fr var(--spacing) 37.5%;
+    grid-template-areas:
+        ". . header . images"
+        ". .   button    . images";
+
+    max-width: 96em;
+    margin: 0 auto;
+
+    .StartButton-wrapper {
+        grid-area: button;
+    }
+
+    .main-header {
+        grid-area: header;
+    }
+
+    .main-images {
+        grid-area: images;
+        display: grid;
+        grid-template-rows: 1fr auto;
+        grid-template-columns: 7fr 9fr;
+        grid-template-areas:
+            "primary primary  "
+            ".    secondary";
+    }
+
+    .images-primary {
+        grid-area: primary;
+    }
+
+    .images-secondary {
+        grid-row: primary / secondary;
+        grid-column: secondary;
+        align-self: flex-end;
+    }
+
+    // .images-more {
+    //     grid-area: more;
+    // }
+}

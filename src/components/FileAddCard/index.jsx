@@ -24,14 +24,14 @@ const AddButton = () => {
                     showUploadList={false}
                     onChange={(info) => {
                         if (info.file.status !== "uploading") {
-                            store.UploadImgStore.addImg(info.file);
+                            store.UploadImgStore.addFile(info.file);
                         }
                     }}
                 >
                     <FloatButton
                         tooltip={<div>从本地中添加</div>}
                         badge={{
-                            count: store.UploadImgStore.getImgListLength,
+                            count: store.UploadImgStore.getFileListLength,
                             color: "blue",
                         }}
                     />

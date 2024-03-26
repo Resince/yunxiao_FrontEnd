@@ -1,8 +1,87 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useStore } from "@/store";
+import { useNavigate, useLocation } from "react-router-dom";
 import "./index.scss";
+import { observer } from "mobx-react-lite";
+import { message } from "antd";
 
 const Login = () => {
     const [toggleState, useToggleState] = useState(false);
+    const [loginEmail, useLoginEmail] = useState("");
+    const [loginPwd, useLoginPwd] = useState("");
+    const [registerEmail, useRegisterEmail] = useState("");
+    const [registerPwd, useRegisterPwd] = useState("");
+    const [registerName, useRegisterName] = useState("");
+    const [msg, useMsg] = useState("");
+    const [role, useRole] = useState("");
+    const [restart, useRestart] = useState(true);
+    const [messageApi, contextHolder] = message.useMessage();
+    const { AuthStore } = useStore();
+    const navigate = useNavigate();
+    const location = useLocation();
+    const emailReg = new RegExp(
+        "^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(.[a-zA-Z0-9-]+)*.[a-zA-Z0-9]{2,6}$"
+    );
+    const passwordReg = new RegExp("^(?=.*[a-zA-Z])(?=.*d).{8,18}$");
+
+    const { from } = location.state || { from: { pathname: "/" } };
+    const isValidEmail = (email) => {
+        if (!emailReg.test(email)) {
+            message.error("邮箱格式不正确");
+            return false;
+        }
+        return true;
+    };
+    const handleLogin = () => {
+        if (!role) {
+            handleCheckEmail();
+        } else {
+            AuthStore.login(loginEmail, loginPwd).then((res) => {
+                if (res) navigate(from);
+            });
+        }
+    };
+    const handleRegister = () => {
+        if (!isValidEmail(registerEmail)) {
+            return;
+        }
+        if (!passwordReg.test(registerPwd)) {
+            message.error("密码格式不正确");
+            return;
+        }
+        AuthStore.register(registerEmail, registerPwd, registerName).then(
+            (res) => {
+                navigate("/login");
+            }
+        );
+    };
+
+    const handleCheckEmail = () => {
+        if (!isValidEmail(loginEmail)) {
+            return;
+        }
+        AuthStore.checkEmail(registerEmail).then((res) => {
+            if (!res) useMsg("邮箱已被注册");
+            else {
+                useRole(
+                    res.role === "admin"
+                        ? "审核员"
+                        : res.role === "user"
+                        ? "用户"
+                        : "访客"
+                );
+                // 重新开始span的动画
+                useRestart(true);
+            }
+        });
+    };
+
+    useEffect(() => {
+        if (!loginEmail) {
+            useRole("");
+            useLoginPwd("");
+        }
+    }, [loginEmail]);
 
     return (
         <div className="login_container">
@@ -12,30 +91,65 @@ const Login = () => {
                 }
             >
                 <div className="form-container sign-up-container">
-                    <form action="#">
+                    <div className="form">
                         <h1 className="text-2xl mb-3">创建账户</h1>
-                        <input type="text" placeholder="Name" />
-                        <input type="email" placeholder="Email" />
-                        <input type="password" placeholder="Password" />
-                        <button>注册</button>
-                    </form>
+                        <input
+                            type="text"
+                            placeholder="Name"
+                            value={registerName}
+                            onChange={(e) => useRegisterName(e.target.value)}
+                        />
+                        <input
+                            type="email"
+                            placeholder="Email"
+                            value={registerEmail}
+                            onChange={(e) => useRegisterEmail(e.target.value)}
+                        />
+                        <input
+                            type="password"
+                            placeholder="Password"
+                            value={registerPwd}
+                            onChange={(e) => useRegisterPwd(e.target.value)}
+                        />
+                        <button onClick={handleRegister}>注册</button>
+                    </div>
                 </div>
                 <div className="form-container sign-in-container">
-                    <form action="#">
-                        <h1 className="text-2xl mb-3">登录系统</h1>
-                        <input type="email" placeholder="Email" />
-                        <input type="password" placeholder="Password" />
+                    <div className="form">
+                        <h1 className="text-2xl mb-3">登录</h1>
+                        <input
+                            type="email"
+                            placeholder="Email"
+                            value={loginEmail}
+                            onChange={(e) => useLoginEmail(e.target.value)}
+                            onKeyDown={(e) => {
+                                if (e.key === "Enter") handleCheckEmail();
+                            }}
+                        />
+                        {!role ? (
+                            <div></div>
+                        ) : (
+                            <input
+                                type="password"
+                                placeholder="Password"
+                                value={loginPwd}
+                                onChange={(e) => useLoginPwd(e.target.value)}
+                                onKeyDown={(e) => {
+                                    if (e.key === "Enter") handleLogin();
+                                }}
+                            />
+                        )}
                         {/* <a href="#">忘记密码?</a> */}
-                        <button>登录</button>
-                    </form>
+                        <button onClick={handleLogin}>
+                            {role ? "登录" : "继续"}
+                        </button>
+                    </div>
                 </div>
                 <div className="overlay-container">
                     <div className="overlay">
                         <div className="overlay-panel overlay-left">
                             <h1>你好！</h1>
-                            <p>
-                                请输入邮箱作为你的登录名，并取一个合适的名称作为你的昵称吧
-                            </p>
+                            <p>请输入邮箱作为登录名，并取一个合适的昵称吧</p>
                             <button
                                 className="ghost"
                                 onClick={() => {
@@ -46,9 +160,18 @@ const Login = () => {
                             </button>
                         </div>
                         <div className="overlay-panel overlay-right">
-                            <h1>你好，尊敬的用户</h1>
+                            <h1>
+                                <span
+                                    className={restart ? "myAnimation" : ""}
+                                    onAnimationEnd={() => {
+                                        useRestart(false);
+                                    }}
+                                >
+                                    你好，尊敬的{role ? role : "访客"}
+                                </span>
+                            </h1>
                             <p>
-                                欢迎使用云销，请输入你的邮箱地址和密码进行登录
+                                欢迎使用云销，请输入邮箱和密码进行登录。没有账号？请点击下方按钮进行注册
                             </p>
                             <button
                                 className="ghost "
@@ -65,4 +188,4 @@ const Login = () => {
         </div>
     );
 };
-export default Login;
+export default observer(Login);

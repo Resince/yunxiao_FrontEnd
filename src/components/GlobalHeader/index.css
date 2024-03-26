@@ -5,12 +5,12 @@
 }
 
 :root {
-    --header-outer-height: 70px;
-    --header-inner-height: 70px;
+    --header-outer-height: 80px;
+    --header-inner-height: 55px;
     --header-height-difference: calc(
         var(--header-outer-height) - var(--header-inner-height)
     );
-    --header-bg: #fff;
+    --header-bg: var(--custom-grey-bg);
 }
 
 .responsive-wrapper {
@@ -24,16 +24,9 @@
     color: var(--custom-color-black-text);
 }
 
-/* body {
-    font-family: "DM Sans", sans-serif;
-    background-color: #f2f5f7;
-    line-height: 1.5;
-    min-height: 300vh;
-    position: relative;
-} */
-
 /* Sticky header */
 .header-outer {
+    z-index: 100;
     /* Make it stick */
     height: var(--header-outer-height);
     position: sticky;
@@ -44,8 +37,11 @@
     align-items: center;
 
     /* Other */
-    background-color: var(--header-bg);
+    /* background-color: var(--header-bg); */
     box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.1);
+    color: #000;
+    background: hsla(0, 0%, 100%, 0.5);
+    backdrop-filter: blur(10px);
 }
 
 .header-inner {
@@ -70,8 +66,8 @@
     flex-wrap: wrap;
 }
 
-.header-navigation a,
-.header-navigation button {
+.header-navigation .sp,
+.header-navigation .sp {
     font-size: 1.125rem;
     color: inherit;
     margin-left: 1.75rem;
@@ -79,27 +75,25 @@
     font-weight: 500;
 }
 
-.header-navigation a {
+.header-navigation .sp {
     /* display: none; */
     font-size: 1.125rem;
     color: inherit;
     text-decoration: none;
 }
 
-.header-navigation button {
+.header-navigation .sp {
     border: 0;
     background-color: transparent;
     padding: 0;
-    margin-left: 4.5rem;
+    margin-left: 2.5rem;
 }
 
-.header-navigation a:hover:after,
-.header-navigation button:hover:after {
+.header-navigation .sp:hover:after {
     transform: scalex(1);
 }
 
-.header-navigation a:after,
-.header-navigation button:after {
+.header-navigation .sp:after {
     transition: 0.25s ease;
     content: "";
     display: block;
@@ -108,6 +102,109 @@
     background-color: currentcolor;
     transform: scalex(0);
     position: absolute;
-    bottom: -2px;
+    bottom: -4px;
     left: 0;
+}
+
+.userCenter {
+    margin-left: 2.5rem;
+    margin-right: 20px;
+}
+
+.userCenter a {
+    cursor: pointer;
+}
+
+.dropdown {
+    border: 0;
+    z-index: 100;
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    display: none;
+}
+
+.sp:hover + .dropdown,
+.dropdown:hover {
+    cursor: pointer;
+    visibility: visible;
+    opacity: 1;
+    display: block;
+    text-align: right;
+    right: -50px;
+    padding-top: 20px;
+    min-width: 180px;
+    box-shadow: 1px 3px 4px -1px #aaaaaa;
+    border-radius: 10px;
+    background-color: var(--custom-white);
+    -webkit-animation: scale-in-ver-top 0.4s cubic-bezier(0.39, 0.575, 0.565, 1);
+    animation: scale-in-ver-top 0.2s cubic-bezier(0.39, 0.575, 0.565, 1);
+}
+
+@-webkit-keyframes scale-in-ver-top {
+    0% {
+        -webkit-transform: scaleY(0);
+        transform: scaleY(0);
+        -webkit-transform-origin: 100% 0%;
+        transform-origin: 100% 0%;
+        opacity: 1;
+    }
+    100% {
+        -webkit-transform: scaleY(1);
+        transform: scaleY(1);
+        -webkit-transform-origin: 100% 0%;
+        transform-origin: 100% 0%;
+        opacity: 1;
+    }
+}
+@keyframes scale-in-ver-top {
+    0% {
+        -webkit-transform: scaleY(0);
+        transform: scaleY(0);
+        -webkit-transform-origin: 100% 0%;
+        transform-origin: 100% 0%;
+        opacity: 1;
+    }
+    100% {
+        -webkit-transform: scaleY(1);
+        transform: scaleY(1);
+        -webkit-transform-origin: 100% 0%;
+        transform-origin: 100% 0%;
+        opacity: 1;
+    }
+}
+
+ul li {
+    clear: both;
+    min-width: 20px;
+    text-align: left;
+    margin-bottom: 20px;
+    border-style: none;
+}
+
+li a {
+    text-decoration: none;
+    transition: all 0.5s ease;
+    margin-left: 1.5rem;
+}
+
+li a:hover {
+    padding-left: 7px;
+    border-left: 3px solid var(--custom-color-black-text);
+    margin-left: 1.4rem;
+    transition: all 0.1s ease;
+}
+
+.exit::before {
+    content: " ";
+    display: block;
+    width: 100%;
+    background-color: rgba(128, 128, 128, 0.318);
+    height: 0.8px;
+    position: relative;
+    top: -9px;
+}
+
+.exit {
+    margin-bottom: 15px;
 }

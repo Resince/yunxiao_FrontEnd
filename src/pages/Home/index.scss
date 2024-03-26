@@ -1,0 +1,16 @@
+:root {
+    background-color: var(--custom-grey-bg);
+}
+
+.down-icon {
+    cursor: pointer;
+    width: 3rem;
+    margin: 0.1em 0.2em;
+    position: fixed;
+    left: 2rem;
+    // bottom: calc();
+    border-radius: 50%;
+    background: var(--custom-grey-bg);
+    bottom: 1rem;
+    align-self: flex-start;
+}

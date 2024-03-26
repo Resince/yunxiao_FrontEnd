@@ -1,18 +1,24 @@
 import React from 'react';
 
-import UploadImgStore from './uploadImgStore';
+import UploadFileStore from './uploadFileStore';
 import AdminMenuStore from './adminMenuStore';
 import RbmApprovalStore from './rbmApprovalStore';
 import PersonalHomeStore from './personalHomeStore';
 import MyMessageStore from './myMessageStore';
+import AuthStore from './authStore';
+import PdfDownStore from './pdfDownStore';
+import UserDataStore from './userDataStore';
 
 class Store {
     constructor() {
-        this.UploadImgStore = UploadImgStore;
+        this.UploadFileStore = UploadFileStore;
         this.AdminMenuStore = AdminMenuStore;
         this.RbmApprovalStore = RbmApprovalStore;
         this.PersonalHomeStore = PersonalHomeStore;
         this.MyMessageStore = MyMessageStore;
+        this.AuthStore = AuthStore;
+        this.PdfDownStore = PdfDownStore;
+        this.UserDataStore = UserDataStore;
     }
 }
 

@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-const NoFoundPage = () => {
+const Error404 = () => {
     const navigate = useNavigate();
     return (
         <div>
@@ -16,4 +16,4 @@ const NoFoundPage = () => {
     );
 };
 
-export default NoFoundPage;
+export default Error404;
