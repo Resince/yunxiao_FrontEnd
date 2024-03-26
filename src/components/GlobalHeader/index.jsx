@@ -13,6 +13,10 @@ const GlobalHeader = () => {
         setUserInfo(AuthStore.userInfo);
     }, [AuthStore.userInfo]);
 
+    const handleLoginOut = () => {
+        AuthStore.logout();
+    };
+
     return (
         <header className="header-outer header-wrapper">
             <div className="header-inner responsive-wrapper">
@@ -48,7 +52,13 @@ const GlobalHeader = () => {
                                     <a href="#">给我们反馈</a>
                                 </li>
                                 <li className="exit">
-                                    <a href="#">退出</a>
+                                    <a
+                                        onClick={() => {
+                                            handleLoginOut();
+                                        }}
+                                    >
+                                        退出
+                                    </a>
                                 </li>
                             </ul>
                         </div>

@@ -2,9 +2,8 @@ import { useEffect, useState } from "react";
 import { useStore } from "@/store";
 import { useNavigate, useLocation } from "react-router-dom";
 import { message } from "antd";
-import { observer } from "mobx-react";
+import { observer } from "mobx-react-lite";
 import "./index.scss";
-
 
 const Login = () => {
     const [toggleState, useToggleState] = useState(false);
@@ -13,19 +12,20 @@ const Login = () => {
     const [registerEmail, useRegisterEmail] = useState("");
     const [registerPwd, useRegisterPwd] = useState("");
     const [registerName, useRegisterName] = useState("");
-    const [msg, useMsg] = useState("");
     const [role, useRole] = useState("");
     const [restart, useRestart] = useState(true);
-    const [messageApi, contextHolder] = message.useMessage();
+    const [regesiterRole, useRegesiterRole] = useState(true);
     const { AuthStore } = useStore();
     const navigate = useNavigate();
     const location = useLocation();
+
     const emailReg = new RegExp(
         "^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(.[a-zA-Z0-9-]+)*.[a-zA-Z0-9]{2,6}$"
     );
     const passwordReg = new RegExp("^(?=.*[a-zA-Z])(?=.*d).{8,18}$");
 
     const { from } = location.state || { from: { pathname: "/" } };
+
     const isValidEmail = (email) => {
         if (!emailReg.test(email)) {
             message.error("邮箱格式不正确");
@@ -33,16 +33,20 @@ const Login = () => {
         }
         return true;
     };
+
     const handleLogin = () => {
         if (!role) {
             handleCheckEmail();
         } else {
             AuthStore.login(loginEmail, loginPwd).then((res) => {
-                if (res) navigate(from);
+                console.log(role);
+                if (res && role === "user") navigate(from);
+                else if (res && role === "admin") navigate("/admin");
             });
         }
     };
-    const handleRegister = () => {
+
+    const handleRegister = (role) => {
         if (!isValidEmail(registerEmail)) {
             return;
         }
@@ -50,30 +54,30 @@ const Login = () => {
             message.error("密码格式不正确");
             return;
         }
-        AuthStore.register(registerEmail, registerPwd, registerName).then(
-            (res) => {
-                navigate("/login");
-            }
-        );
+        AuthStore.register(registerEmail, registerPwd, role).then(() => {
+            //清空
+            useRegisterName("");
+            useRegisterEmail("");
+            useRegisterPwd("");
+            useToggleState(false);
+            useRegesiterRole(true);
+        });
     };
 
     const handleCheckEmail = () => {
         if (!isValidEmail(loginEmail)) {
             return;
         }
-        AuthStore.checkEmail(registerEmail).then((res) => {
-            if (!res) useMsg("邮箱已被注册");
-            else {
-                useRole(
-                    res.role === "admin"
-                        ? "审核员"
-                        : res.role === "user"
-                        ? "用户"
-                        : "访客"
-                );
-                // 重新开始span的动画
-                useRestart(true);
-            }
+        AuthStore.checkEmail(loginEmail).then((res) => {
+            useRole(
+                res.role === "admin"
+                    ? "审核员"
+                    : res.role === "user"
+                    ? "用户"
+                    : "访客"
+            );
+            // 重新开始span的动画
+            useRestart(true);
         });
     };
 
@@ -84,18 +88,9 @@ const Login = () => {
         }
     }, [loginEmail]);
 
-const Login = () => {
-    const [toggleState, useToggleState] = useState(false);
-    const navigate = useNavigate();
-
-    // 测试审核端
-    const handleAdmin = () => {
-        navigate("/admin");
-    };
-
     return (
         <div className="login_container">
-            <button onClick={handleAdmin}>进入审核</button>
+            <div className="fixed "></div>
             <div
                 className={
                     toggleState ? "right-panel-active container" : "container"
@@ -122,7 +117,32 @@ const Login = () => {
                             value={registerPwd}
                             onChange={(e) => useRegisterPwd(e.target.value)}
                         />
-                        <button onClick={handleRegister}>注册</button>
+                        {regesiterRole ? (
+                            <button
+                                onClick={() => {
+                                    useRegesiterRole(false);
+                                }}
+                            >
+                                注册
+                            </button>
+                        ) : (
+                            <div className="flex gap-2">
+                                <button
+                                    onClick={() => {
+                                        handleRegister("user");
+                                    }}
+                                >
+                                    用户
+                                </button>
+                                <button
+                                    onClick={() => {
+                                        handleRegister("admin");
+                                    }}
+                                >
+                                    审核员
+                                </button>
+                            </div>
+                        )}
                     </div>
                 </div>
                 <div className="form-container sign-in-container">

@@ -40,7 +40,8 @@ class AuthStore {
 
     // 检查对应邮件地址是用户还是管理员或者说不存在
     async checkEmail(email) {
-        return await myAxios.post("/user/checkEmail", { email }).then((res) => {
+        console.log(email);
+        return await myAxios.post("/user/checkEmail", { "email": email }).then((res) => {
             if (res)
                 return res.data;
             else
@@ -74,7 +75,7 @@ class AuthStore {
 
     // 用户是否登录
     isLogin() {
-        return myToken.getToken() !== undefined;
+        return myToken.getToken();
     }
 
     get userInfo() {
