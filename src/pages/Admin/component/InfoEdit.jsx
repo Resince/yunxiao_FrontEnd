@@ -79,7 +79,7 @@ const InfoEdit = observer(({ store }) => {
                     listType="picture-circle"
                     className="avatar-uploader"
                     showUploadList={false}
-                    action="https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188"
+                    // action="https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188"
                     beforeUpload={beforeUpload}
                     onChange={handleChange}
                 >

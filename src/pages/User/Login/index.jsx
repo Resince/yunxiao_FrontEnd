@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { useStore } from "@/store";
 import { useNavigate, useLocation } from "react-router-dom";
-import "./index.scss";
-import { observer } from "mobx-react-lite";
 import { message } from "antd";
+import { observer } from "mobx-react";
+import "./index.scss";
+
 
 const Login = () => {
     const [toggleState, useToggleState] = useState(false);
@@ -83,8 +84,18 @@ const Login = () => {
         }
     }, [loginEmail]);
 
+const Login = () => {
+    const [toggleState, useToggleState] = useState(false);
+    const navigate = useNavigate();
+
+    // 测试审核端
+    const handleAdmin = () => {
+        navigate("/admin");
+    };
+
     return (
         <div className="login_container">
+            <button onClick={handleAdmin}>进入审核</button>
             <div
                 className={
                     toggleState ? "right-panel-active container" : "container"

@@ -25,7 +25,7 @@ const MyMessage = observer(({ store }) => {
         // 添加监听事件
         containerRef.current.addEventListener('scroll', onScroll);
         // 清除监听事件
-        return () => containerRef.current.removeEventListener('scroll', onScroll);
+        // return () => containerRef.current.removeEventListener('scroll', onScroll);
     }, [])
 
     const data = store.MyMessageStore.getMessage();

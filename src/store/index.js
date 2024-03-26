@@ -8,6 +8,7 @@ import MyMessageStore from './myMessageStore';
 import AuthStore from './authStore';
 import PdfDownStore from './pdfDownStore';
 import UserDataStore from './userDataStore';
+import FinancialHomeStore from './financialHomeStore';
 
 class Store {
     constructor() {
@@ -19,6 +20,7 @@ class Store {
         this.AuthStore = AuthStore;
         this.PdfDownStore = PdfDownStore;
         this.UserDataStore = UserDataStore;
+        this.FinancialHomeStore = FinancialHomeStore;
     }
 }
 
