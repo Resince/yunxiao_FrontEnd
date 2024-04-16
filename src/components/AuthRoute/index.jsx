@@ -11,7 +11,7 @@ function AuthRoute({ children, role }) {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        if (!AuthStore.userInfo.role) {
+        if (AuthStore.userInfo.role) {
             setIsLoading(false);
         }
     }, []);
@@ -20,9 +20,6 @@ function AuthRoute({ children, role }) {
     if (!AuthStore.isLogin()) {
         // 未登录
         navigate("/login");
-    } else if (isLoading || !AuthStore.userInfo.role) {
-        // 用户信息还没有即时更新
-        return <Load />;
     } else if (role.indexOf(AuthStore.userInfo.role) === -1) {
         navigate("/noAccess");
     }

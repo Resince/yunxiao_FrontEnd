@@ -12,7 +12,7 @@ const DownloadFile = () => {
         const link = document.createElement("a");
         if (!pdfDownStore.getPdf) return;
         link.href = pdfDownStore.getPdf;
-        link.download = PdfDownStore.getPdf.name || "download.pdf";
+        link.download = PdfDownStore.getPdf.name || "2024-4-3发票合集.pdf";
         link.click();
     };
 

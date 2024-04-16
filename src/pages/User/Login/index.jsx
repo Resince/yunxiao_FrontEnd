@@ -40,8 +40,8 @@ const Login = () => {
         } else {
             AuthStore.login(loginEmail, loginPwd).then((res) => {
                 console.log(role);
-                if (res && role === "user") navigate(from);
-                else if (res && role === "admin") navigate("/admin");
+                if (res && role === "用户") navigate(from);
+                else if (res && role === "审核员") navigate("/admin");
             });
         }
     };
