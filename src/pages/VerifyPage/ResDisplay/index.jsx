@@ -19,28 +19,35 @@ const ResDisply = () => {
     const data = [
         {
             key: "1",
-            attribute: "John Brown",
-            original: 32,
-            search: "New York No. 1 Lake Park",
+            attribute: "sellerBankAccountInfo",
+            original: "招商银行股份有限公司天津自由贸易试验区分行",
+            search: "招商银行股份有限公司天津自由贸易试验区分行",
         },
         {
             key: "2",
-            attribute: "Joe Black",
-            original: 42,
-            search: "London No. 1 Lake Park",
+            attribute: "sellerName",
+            original: "滴滴出行科技有限公司",
+            search: "滴滴出行科技有限公司",
         },
         {
             key: "3",
-            attribute: "Jim Green",
-            original: 32,
-            search: "Sydney No. 1 Lake Park",
+            attribute: "invoiceTax",
+            original: "0.00",
+            search: "0.00",
         },
         {
             key: "4",
-            attribute: "Jim Red",
-            original: 32,
-            search: "London No. 2 Lake Park",
+            attribute: "title",
+            original: "天津增值税电子普通发票",
+            search: "天津增值税电子普通发票",
         },
+        {
+            key: "5",
+            attribute: "totalAmountInWords",
+            original: "肆拾肆圆壹角叁分",
+            search: "肆拾肆圆壹角叁分",
+        },
+        
     ];
     const getColumnSearchProps = (dataIndex) => ({
         filterDropdown: ({

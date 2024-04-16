@@ -17,7 +17,7 @@ const DownloadFile = lazy(() => import("@/pages/DownloadFiles"));
 const DataTablePage = lazy(() => import("@/pages/DataDisplay/DataTablePage"));
 const DataListPage = lazy(() => import("@/pages/DataDisplay/DataListPage"));
 const ResDisply = lazy(() => import("@/pages/VerifyPage/ResDisplay"));
-const Admin = lazy(() => import("@/pages/Admin"));
+import Admin from "@/pages/Admin";
 
 const myRoutes = createBrowserRouter([
     {

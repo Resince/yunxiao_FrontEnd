@@ -10,6 +10,7 @@ const OperatePic = ({ data }) => {
 
     useEffect(() => {
         const genView = (data) => {
+            console.log(data);
             const temp = [];
             for (let i = 0; i < data.length; i++) {
                 if (data[i].type === "pdf") {
@@ -28,10 +29,15 @@ const OperatePic = ({ data }) => {
                     );
                 } else if (data[i].type === "img") {
                     temp.push(
-                        <img
-                            className="rounded-lg shadow-xl"
-                            src={data[i].file}
-                        />
+                        <div>
+                            <img
+                                className="rounded-lg shadow-xl"
+                                src={data[i].file}
+                            />
+                            <div className="ope-text-div">
+                                <span className="ope-text">{data[i].name}</span>
+                            </div>
+                        </div>
                     );
                 } else {
                     temp.push(<h1>暂不支持显示</h1>);
@@ -41,7 +47,7 @@ const OperatePic = ({ data }) => {
         };
         setFileList(genView(data));
     }, [data]);
-    
+
     return (
         <div className="ope-contain">
             {fileList.map((item, index) => {

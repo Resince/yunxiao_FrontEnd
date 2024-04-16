@@ -24,6 +24,7 @@ class PdfDownStore {
     get getPdf() {
         return toJS(this.pdf);
     }
+
 }
 
 export default new PdfDownStore();
