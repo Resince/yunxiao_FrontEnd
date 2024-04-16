@@ -25,7 +25,7 @@ const FinancialHome = observer(({ store }) => {
                     <p>已处理：{store.FinancialHomeStore.feeReviewData.finished}项</p>
                     <div className="flex space-x-20">
                         <p className="">待处理：{store.FinancialHomeStore.feeReviewData.unfinished}项</p>
-                        <img src={Fee_Review_ICON} alt="Fee_Review_ICON"/>
+                        <img src={Fee_Review_ICON} alt="Fee_Review_ICON" />
                     </div>
                 </div>
 
@@ -68,14 +68,14 @@ const FinancialHome = observer(({ store }) => {
                                 defaultValue={store.FinancialHomeStore.selectedYear}
                                 style={{ width: 100 }}
                                 onChange={handleYearChange}>
-                                {['2010', '2011', '2012', '2013', '2014', '2015'].map((item) => (
+                                {['2018', '2019', '2020', '2021', '2022', '2023'].map((item) => (
                                     <Select.Option key={item} value={item}>{item}</Select.Option>
                                 ))}
                             </Select>
                         </div>
-                        
+
                     </div>
-                    <div className="h-52"><LineChart store={ store } /></div>
+                    <div className="h-52"><LineChart store={store} /></div>
                 </div>
                 <div className="w-1/4 bg-white rounded shadow-lg p-2">
                     <div className="text-lg font-semibold">快捷报账</div>

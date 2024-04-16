@@ -18,7 +18,7 @@ const data = [
         department: '软件学院',
         name: '梨花',
         money: 123.29,
-        status: 2,
+        status: 0,
         result: '被打回',
     },
     {
@@ -79,7 +79,7 @@ class RbmApprovalStore {
                 department: '软件学院',
                 name: '梨花',
                 money: 123.29,
-                status: i%3,
+                status: i%2,
                 result: (i%3 === 1 || i%3 === 2) ? '审核通过': '被打回',
             })
         }

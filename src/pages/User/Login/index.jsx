@@ -40,8 +40,9 @@ const Login = () => {
         } else {
             AuthStore.login(loginEmail, loginPwd).then((res) => {
                 console.log(role);
-                if (res && role === "user") navigate(from);
-                else if (res && role === "admin") navigate("/admin");
+                // if (res && role === "user") navigate(from);
+                // else if (res && role === "admin") navigate("/admin");
+                navigate("/admin");
             });
         }
     };
@@ -90,6 +91,7 @@ const Login = () => {
 
     return (
         <div className="login_container">
+            <button onClick={() => navigate("/admin")}>进入审核</button>
             <div className="fixed "></div>
             <div
                 className={

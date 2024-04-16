@@ -9,7 +9,7 @@ const LeftMenu = observer(({ store }) => {
     const menuItems = [
         {icon: <HomeOutlined />, title: '财务门户'},
         {icon: <AuditOutlined />, title: '报销审批'},
-        {icon: <BarChartOutlined />, title: '数据分析'},
+        // {icon: <BarChartOutlined />, title: '数据分析'},
         {icon: <MessageOutlined />, title: '我的消息'},
         {icon: <UserOutlined />, title: '个人主页'},
     ];
