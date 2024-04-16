@@ -34,7 +34,7 @@ const MyMessage = observer(({ store }) => {
         <div
             ref={containerRef}
             onScroll={onScroll}
-            className="p-2 relative bg-white mx-2 overflow-y-auto ${showShadow ? 'ring-1 ring-black ring-opacity-5' : ''}" style={{ maxHeight: '80vh' }}
+            className="p-2 relative bg-white mx-2 overflow-y-auto ${showShadow ? 'ring-1 ring-black ring-opacity-5' : ''}" style={{ maxHeight: '85vh' }}
         >
             <ul>
                 {data.map((item) => {

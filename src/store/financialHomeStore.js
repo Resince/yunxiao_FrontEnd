@@ -98,19 +98,19 @@ class FinancialHomeStore {
     fetchLinechartData() {
         // this.selectedYear = year;
         // 调用API
-        fetch('https://gw.alipayobjects.com/os/bmw-prod/1d565782-dde4-4bb6-8946-ea6a38ccf184.json')
-            .then((response) => response.json())
-            .then((json) => {
-                console.log(json);
-                this.linechartData = json.filter(item => {
-                    const dateParts = item.Date.split('-');
-                    return dateParts[0] === this.selectedYear;
-                })
-                console.log(this.linechartData);
-            })
-            .catch((error) => {
-                console.log('fetch data failed', error);
-            });
+        // fetch('https://gw.alipayobjects.com/os/bmw-prod/1d565782-dde4-4bb6-8946-ea6a38ccf184.json')
+        //     .then((response) => response.json())
+        //     .then((json) => {
+        //         console.log(json);
+        //         this.linechartData = json.filter(item => {
+        //             const dateParts = item.Date.split('-');
+        //             return dateParts[0] === this.selectedYear;
+        //         })
+        //         console.log(this.linechartData);
+        //     })
+        //     .catch((error) => {
+        //         console.log('fetch data failed', error);
+        //     });
         // console.log(this.linechartData);
         // return this.linechartData; 
         // this.linechartData = this.linechartData.filter(item => item.year === this.selectedYear)
